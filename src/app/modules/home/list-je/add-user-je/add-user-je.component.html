@@ -1,0 +1,225 @@
+<div
+class="modal fade"
+id="addUser"
+tabindex="-1"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<form [formGroup]="userDetail">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Add New User</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Họ và tên
+          </label>
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="name"
+            name="name"
+            aria-describedby="emailHelp"
+          />
+          <br />
+          <mat-error
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.name.errors?.required &&
+              userDetail.touched
+            "
+          >
+            Không được để trống họ và tên
+          </mat-error>
+          <mat-error
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.name.errors?.minlength &&
+              userDetail.touched
+            "
+          >
+            Họ và tên phải trên 5 ký tự
+          </mat-error>
+          <mat-error
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.name.errors?.maxlength &&
+              userDetail.touched
+            "
+          >
+            Họ và tên không quá 20 ký tự
+          </mat-error>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email
+          </label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="email"
+            name="email"
+            aria-describedby="emailHelp"
+          />
+          <br />
+          <div *ngIf="message == 'NO_CONTENT'" class="alert-danger">
+            Email đã tồn tại
+          </div>
+          <div
+            class="alert-danger"
+            *ngIf="
+              !userDetail.get('email').valid &&
+              userDetail.get('email').touched
+            "
+          >
+            Email không hợp lệ
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Phone
+          </label>
+          <input
+            type="text"
+            formControlName="phoneNumber"
+            class="form-control"
+            id="phoneNumber"
+            name="phoneNumber"
+            aria-describedby="emailHelp"
+          />
+          <br />
+          <div
+            class="alert-danger"
+            *ngIf="
+              !userDetail.get('phoneNumber').valid &&
+              userDetail.get('phoneNumber').touched
+            "
+          >
+            Số điện thoại không hợp lệ
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >User name
+          </label>
+          <input
+            type="text"
+            formControlName="userName"
+            class="form-control"
+            id="userName"
+            name="userName"
+            aria-describedby="emailHelp"
+          />
+          <br />
+          <div *ngIf="message == 'NOT_FOUND'" class="alert-danger">
+            Tài khoản đã tồn tại
+          </div>
+          <mat-error
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.userName.errors?.required &&
+              userDetail.touched
+            "
+          >
+            Không được để trống tài khoản
+          </mat-error>
+          <mat-error
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.userName.errors?.minlength &&
+              userDetail.touched
+            "
+          >
+            Tài khoản phải trên 5 ký tự
+          </mat-error>
+          <mat-error
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.userName.errors?.maxlength &&
+              userDetail.touched
+            "
+          >
+            Tài khoản không quá 20 ký tự
+          </mat-error>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Password
+          </label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="password"
+            name="password"
+            aria-describedby="emailHelp"
+          />
+          <br />
+          <div
+            class="alert-danger"
+            *ngIf="
+              !userDetail.get('password').valid &&
+              userDetail.get('password').touched
+            "
+          >
+            Vui lòng nhập mật khẩu có 8 - 16 kí tự và có ít nhất 1 chữ và
+            1 kí tự đặc biệt
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">
+            Confirm password
+          </label>
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            class="form-control"
+            id="confirmPassword"
+            aria-describedby="emailHelp"
+          />
+          <br />
+          <div
+            class="alert-danger"
+            *ngIf="
+              userDetail.controls.password.value !==
+                userDetail.controls.confirmPassword.value &&
+              userDetail.get('confirmPassword').touched
+            "
+          >
+            Mật khẩu không trùng khớp
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="addUser()"
+          >
+            Add User
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+</div>
